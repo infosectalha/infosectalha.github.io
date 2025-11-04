@@ -3,126 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muhammad Talha | SOC Analyst L1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Talha Sheikh | Cybersecurity Portfolio</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top left, #0a0f1f, #000);
-      color: #f2f2f2;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      color: #f2f4f8;
+      background: radial-gradient(circle at top, #0a1a2f, #020a13);
+      overflow-x: hidden;
+      position: relative;
     }
+
+    /* Matrix background effect */
+    canvas#matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+    }
+
     header {
       text-align: center;
-      padding: 40px 20px;
+      padding: 80px 20px 40px;
+      position: relative;
+      z-index: 1;
     }
-    header img {
+
+    .profile-img {
       width: 160px;
       height: 160px;
       border-radius: 50%;
-      border: 3px solid #00bcd4;
-      box-shadow: 0 0 25px rgba(0, 188, 212, 0.4);
-      margin-bottom: 15px;
+      border: 3px solid #00bfff;
+      object-fit: cover;
+      box-shadow: 0 0 25px rgba(0, 191, 255, 0.4);
     }
+
     h1 {
-      margin: 10px 0 5px;
-      font-size: 2rem;
-      color: #00bcd4;
+      font-size: 2.5em;
+      color: #00bfff;
+      margin-top: 20px;
     }
-    h3 {
-      margin: 0;
-      color: #ccc;
-      font-weight: 400;
+
+    h2 {
+      font-size: 1.2em;
+      color: #a6b8d4;
+      margin-bottom: 10px;
     }
-    .links a {
-      color: #00bcd4;
+
+    .section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .section h3 {
+      color: #00bfff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #00bfff;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    a {
+      color: #00bfff;
       text-decoration: none;
-      margin: 0 10px;
-      font-weight: 500;
     }
-    .links a:hover {
+
+    a:hover {
       text-decoration: underline;
     }
-    section {
-      width: 90%;
-      max-width: 900px;
-      margin: 40px 0;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 0 15px rgba(0, 188, 212, 0.1);
-    }
-    section h2 {
-      color: #00bcd4;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      margin: 8px 0;
-      color: #ddd;
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #a6b8d4;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
+  <canvas id="matrix-bg"></canvas>
+  
   <header>
-    <img src="profile.jpg" alt="Muhammad Talha">
-    <h1>Muhammad Talha</h1>
-    <h3>SOC Analyst L1 | Cybersecurity Enthusiast</h3>
-    <div class="links">
-      <a href="mailto:infosectalha@gmail.com">Email</a> |
-      <a href="https://www.linkedin.com/in/infosectalha" target="_blank">LinkedIn</a> |
+    <img src="profile.jpg" alt="Talha Sheikh" class="profile-img" />
+    <h1>Talha Sheikh</h1>
+    <h2>Cybersecurity Enthusiast | SOC Analyst (in training)</h2>
+    <p>
+      <a href="mailto:infosectalha@gmail.com">infosectalha@gmail.com</a> |
+      <a href="https://linkedin.com/in/infosectalha" target="_blank">LinkedIn</a> |
       <a href="https://github.com/infosectalha" target="_blank">GitHub</a>
-    </div>
+    </p>
   </header>
 
-  <section>
-    <h2>Experience</h2>
+  <section class="section">
+    <h3>About Me</h3>
+    <p>
+      I'm an aspiring cybersecurity professional with hands-on experience in Kali Linux, Ubuntu, Docker, Nessus, Metasploit, Burp Suite, bWAPP, Nmap, Nikto, Gobuster, and Wazuh.
+      I focus on threat analysis, vulnerability assessment, and SOC operations.
+    </p>
+  </section>
+
+  <section class="section">
+    <h3>Certifications</h3>
     <ul>
-      <li>SOC Analyst Intern — Cyborts</li>
-      <li>Associate Project Manager Intern — Excelerate</li>
-      <li>Receptionist Intern — American Lyceum School</li>
+      <li>Ethical Hacking Essentials – EC-Council (2024)</li>
+      <li>Cybersecurity Fundamentals – IBM SkillsBuild (2024)</li>
+      <li>Introduction to Information Security – Alison (2024)</li>
+      <li>Security Awareness Training – Test.io (2024)</li>
+      <!-- You can add more later -->
     </ul>
   </section>
 
-  <section>
-    <h2>Certifications</h2>
+  <section class="section">
+    <h3>Projects</h3>
     <ul>
-      <li>Identify & Prevent Phishing Attacks — Udemy</li>
-      <li>Linux Fundamentals 100 — TCM Security</li>
-      <li>SOC Analyst Internship Certificate — Cyborts</li>
-      <li>Vulnerability Assessment & Penetration Testing — Udemy</li>
-      <li>ISCS Candidate Certificate</li>
-      <li>Data Analytics — UniAthena</li>
-      <li>Fundamentals of Dark Web — SOCRadar</li>
-      <li>Mastering Vulnerability Assessment — Tech Hierarchy</li>
-      <li>Cybersecurity Badge — Test.io</li>
-      <li>Basics of Python — UniAthena</li>
-      <li>Google Soft Skills — PAFLA</li>
-      <li>Master ChatGPT — UniAthena</li>
-      <li>OPSWAT ICIP — OPSWAT</li>
-      <li>Windows Password Cracking Course — Udemy</li>
+      <li><a href="#">SOC Simulation with Wazuh – Notes & Report</a></li>
+      <li><a href="#">Vulnerability Scanning Lab – Nessus & Nmap</a></li>
+      <li><a href="#">Web App Pentest on bWAPP using BurpSuite</a></li>
+      <li><a href="#">Docker-based Pentesting Environment Setup</a></li>
     </ul>
   </section>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li>MITRE ATT&CK Mapping</li>
-      <li>Web Application VAPT — bWAPP</li>
-      <li>Web Application VAPT — DVWA</li>
-      <li>Cryptography & Secret Retrieval — Docker Lab</li>
-      <li>Advanced VAPT — OWASP Juice Shop</li>
-      <li>Network VAPT — Metasploitable + Nessus</li>
-    </ul>
+  <section class="section">
+    <h3>Contact</h3>
+    <p>If you'd like to collaborate or discuss cybersecurity opportunities, feel free to reach out at <a href="mailto:infosectalha@gmail.com">infosectalha@gmail.com</a>.</p>
   </section>
+
+  <footer>
+    © 2025 Talha Sheikh — Built with 💻 & ☕ for Cybersecurity Excellence
+  </footer>
+
+  <script>
+    // Matrix background animation
+    const canvas = document.getElementById('matrix-bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = "01".split("");
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00bfff";
+      ctx.font = fontSize + "px monospace";
+
+      drops.forEach((y, index) => {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, index * fontSize, y * fontSize);
+        if (y * fontSize > canvas.height && Math.random() > 0.975) drops[index] = 0;
+        drops[index]++;
+      });
+    }
+
+    setInterval(draw, 33);
+  </script>
 </body>
 </html>
