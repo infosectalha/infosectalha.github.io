@@ -1,29 +1,43 @@
-// Mobile menu toggle
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
+// ==========================
+// Mobile Sidebar Toggle
+// ==========================
+const openSidebarBtn = document.getElementById('openSidebarBtn');
+const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+const mobileSidebar = document.getElementById('mobileSidebar');
 
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
+openSidebarBtn?.addEventListener('click', () => {
+  mobileSidebar.setAttribute('aria-hidden', 'false');
+  mobileSidebar.classList.add('active');
 });
 
-// Matrix-like animation (0s and 1s background)
-const canvas = document.getElementById('matrixBackground');
+closeSidebarBtn?.addEventListener('click', () => {
+  mobileSidebar.setAttribute('aria-hidden', 'true');
+  mobileSidebar.classList.remove('active');
+});
+
+// ==========================
+// Matrix-like Background Animation
+// ==========================
+const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
 
 const binary = "010101110010101001001010101010101001010100101010";
 const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
 
 function drawMatrix() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.fillStyle = "#0078ff";
-  ctx.font = fontSize + "px monospace";
+  ctx.font = `${fontSize}px monospace`;
 
   for (let i = 0; i < drops.length; i++) {
     const text = binary.charAt(Math.floor(Math.random() * binary.length));
@@ -36,9 +50,14 @@ function drawMatrix() {
   }
 }
 
-setInterval(drawMatrix, 40);
+function animate() {
+  drawMatrix();
+  requestAnimationFrame(animate);
+}
+animate();
 
 window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  resizeCanvas();
+  columns = Math.floor(canvas.width / fontSize);
+  drops = Array(columns).fill(1);
 });
