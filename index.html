@@ -1,318 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Muhammad Talha | SOC Analyst L1</title>
-  <style>
-    /* Font */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Muhammad Talha | SOC Analyst L1</title>
+<style>
+  /* ==== Global Theme ==== */
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #000;
+    color: #e0e0e0;
+    overflow-x: hidden;
+  }
 
-    /* --- Base --- */
-    * { box-sizing: border-box; margin:0; padding:0; }
-    html,body { height:100%; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #000; /* fallback */
-      color: #e6eef8;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-      position:relative;
-    }
+  h1, h2, h3 {
+    color: #2196f3; /* blue headings */
+    text-transform: uppercase;
+  }
 
-    /* --- Canvas background (full-screen) --- */
-    canvas#network-bg {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      display:block;
-      background: linear-gradient(180deg, #020203 0%, #050608 60%, #05060a 100%);
-      filter: contrast(1.05) saturate(1.05);
-    }
+  a {
+    color: #2196f3;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 
-    /* --- Content container --- */
-    .wrap {
-      position: relative;
-      z-index: 2; /* above canvas */
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 28px;
-      background: rgba(10,10,12,0.6);
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 60px rgba(0,85,170,0.06);
-      border: 1px solid rgba(255,255,255,0.03);
-    }
+  /* ==== Background Animation ==== */
+  .background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+    overflow: hidden;
+    z-index: -1;
+  }
 
-    /* --- Profile --- */
-    .profile {
-      text-align:center;
-      margin-bottom: 18px;
-    }
+  .node {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #2196f3;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float 12s linear infinite;
+  }
 
-    .profile-img {
-      width:150px;
-      height:150px;
-      border-radius:50%;
-      overflow:hidden;
-      display:inline-block;
-      border: 3px solid #1f9fff;
-      box-shadow: 0 6px 30px rgba(31,159,255,0.12), 0 0 18px rgba(31,159,255,0.06);
-      transition: transform .35s ease, box-shadow .35s ease;
-    }
-    .profile-img img { width:100%; height:100%; object-fit:cover; display:block; }
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0); opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100vh) translateX(20vw); opacity: 0.2; }
+  }
 
-    .profile-img:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 12px 50px rgba(31,159,255,0.18), 0 0 30px rgba(31,159,255,0.12);
-    }
+  /* ==== Layout ==== */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    position: relative;
+    z-index: 1;
+  }
 
-    h1 { margin-top:14px; font-size:2.3rem; color:#bfe9ff; letter-spacing:0.2px; }
-    .title { color:#a8b6c9; margin-top:6px; font-weight:500; }
+  .profile {
+    text-align: center;
+  }
 
-    /* --- Section style --- */
-    section.block {
-      margin-top:24px;
-      padding:18px 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.02);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-      transition: transform .25s ease;
-    }
-    section.block:hover { transform: translateY(-4px); }
+  .profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid #2196f3;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
 
-    section.block h2 {
-      display:inline-block;
-      margin-bottom:10px;
-      color:#1f9fff; /* blue subheading */
-      font-size:1.15rem;
-      padding-bottom:6px;
-      border-bottom:2px solid rgba(31,159,255,0.12);
-    }
+  section {
+    margin-bottom: 60px;
+  }
 
-    p, li { color:#d9e6f4; font-size:0.98rem; line-height:1.55; }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 
-    ul { margin-top:8px; list-style:none; padding-left:0; }
-    ul li {
-      padding:10px 8px;
-      border-bottom:1px solid rgba(255,255,255,0.02);
-      color: #d9e6f4;
-    }
-    ul li:last-child { border-bottom:none; }
+  li {
+    margin-bottom: 10px;
+  }
 
-    /* --- Contact links --- */
-    .contact a {
-      display:inline-block;
-      margin-right:14px;
-      color:#aee3ff;
-      text-decoration:none;
-      font-weight:600;
-    }
-    .contact a:hover { color:#ffffff; text-decoration:underline; }
+  /* Contact */
+  .contact-links a {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: 500;
+  }
 
-    /* --- Footer --- */
-    footer { text-align:center; color:#8da0b8; margin-top:18px; font-size:0.9rem; }
+  /* Glowing lines overlay */
+  .lines::before, .lines::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      to right,
+      rgba(33,150,243,0.05) 0px,
+      rgba(33,150,243,0.05) 2px,
+      transparent 2px,
+      transparent 80px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(33,150,243,0.05) 0px,
+      rgba(33,150,243,0.05) 2px,
+      transparent 2px,
+      transparent 80px
+    );
+    animation: moveLines 30s linear infinite;
+    z-index: -2;
+  }
 
-    /* --- Responsive --- */
-    @media (max-width:720px) {
-      .wrap { margin:18px; padding:16px; }
-      h1 { font-size:1.8rem; }
-      .profile-img { width:120px; height:120px; }
-    }
+  @keyframes moveLines {
+    from { transform: translate(0,0); }
+    to { transform: translate(-80px,-80px); }
+  }
 
-  </style>
+</style>
 </head>
 <body>
-  <!-- animated network canvas -->
-  <canvas id="network-bg"></canvas>
 
-  <div class="wrap" role="main">
-    <div class="profile">
-      <span class="profile-img">
-        <img src="profile.jpg" alt="Muhammad Talha" />
-      </span>
-      <h1>Muhammad Talha</h1>
-      <div class="title">SOC Analyst L1</div>
-    </div>
+<div class="background">
+  <!-- Random glowing nodes -->
+  <div class="node" style="top:10%; left:20%; animation-delay:0s;"></div>
+  <div class="node" style="top:30%; left:70%; animation-delay:2s;"></div>
+  <div class="node" style="top:50%; left:40%; animation-delay:4s;"></div>
+  <div class="node" style="top:80%; left:10%; animation-delay:6s;"></div>
+  <div class="node" style="top:20%; left:90%; animation-delay:8s;"></div>
+  <div class="lines"></div>
+</div>
 
-    <section id="about" class="block">
-      <h2>About Me</h2>
-      <p>
-        I’m a cybersecurity analyst focused on identifying and mitigating real-world vulnerabilities.
-        My hands-on experience in penetration testing, vulnerability assessment, and network scanning
-        has helped me complete projects using DVWA, bWAPP, Juice Shop, WebGoat, and Metasploitable.
-        I’m currently open to freelance or internship opportunities in offensive security and SOC analysis.
-      </p>
-    </section>
-
-    <section id="certifications" class="block">
-      <h2>Certifications</h2>
-      <ul>
-        <li>Identify and Prevent Phishing Attacks Before They Harm You (Udemy)</li>
-        <li>Linux Fundamentals 100 (TCM Security)</li>
-        <li>Certificate of SOC Analyst Internship (Cyborts)</li>
-        <li>Vulnerability Assessment and Pentesting (VAPT) (Udemy)</li>
-        <li>ISCS Candidate Certificate</li>
-        <li>Data Analytics (UniAthena)</li>
-        <li>Fundamentals of Dark Web (SOCRadar)</li>
-        <li>Mastering Vulnerability Assessment (Tech Hierarchy)</li>
-        <li>Cybersecurity Badge (Test.io)</li>
-        <li>Basics of Python (UniAthena)</li>
-        <li>Google Soft Skills Program (PAFLA)</li>
-        <li>Master ChatGPT (UniAthena)</li>
-        <li>OPSWAT Introduction to Critical Infrastructure Protection (ICIP) (Opswat)</li>
-        <li>Complete Windows Password Cracking Course | Practical Guide (Udemy)</li>
-      </ul>
-    </section>
-
-    <section id="projects" class="block">
-      <h2>Projects</h2>
-      <ul>
-        <li>MITRE ATT&CK</li>
-        <li>Web Application Vulnerability Assessment (bWAPP)</li>
-        <li>Web Application Vulnerability Assessment (DVWA)</li>
-        <li>Cryptography and Secret Retrieval – Docker Lab</li>
-        <li>Advanced Vulnerability Assessment (OWASP Juice Shop)</li>
-        <li>Network Vulnerability Assessment – Metasploitable with Nessus</li>
-      </ul>
-    </section>
-
-    <section id="experience" class="block">
-      <h2>Experience</h2>
-      <ul>
-        <li>SOC Analyst Intern – Cyborts (1 month)</li>
-        <li>Associate Project Manager Intern – Excelerate (1 month)</li>
-        <li>Receptionist Intern – American Lyceum School (1 month)</li>
-      </ul>
-    </section>
-
-    <section id="contact" class="block contact">
-      <h2>Contact Me</h2>
-      <div style="margin-top:10px">
-        <a href="mailto:infosectalha@gmail.com">📧 infosectalha@gmail.com</a>
-        <a href="https://www.linkedin.com/in/infosectalha" target="_blank">💼 linkedin.com/in/infosectalha</a>
-        <a href="https://github.com/infosectalha" target="_blank">💻 github.com/infosectalha</a>
-      </div>
-    </section>
-
-    <footer>© 2025 Muhammad Talha — Cybersecurity Portfolio</footer>
+<div class="container">
+  <div class="profile">
+    <img src="profile.jpg" alt="Muhammad Talha" class="profile-img" />
+    <h1>Muhammad Talha</h1>
+    <h3>SOC Analyst L1</h3>
   </div>
 
-  <!-- ====== Network animation script ====== -->
-  <script>
-    const canvas = document.getElementById('network-bg');
-    const ctx = canvas.getContext('2d');
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a cybersecurity analyst focused on identifying and mitigating real-world vulnerabilities.
+      My hands-on experience in penetration testing, vulnerability assessment, and network scanning
+      has helped me complete projects using DVWA, bWAPP, Juice Shop, WebGoat, and Metasploitable.
+      I’m open to freelance or internship opportunities in offensive security and SOC analysis.
+    </p>
+  </section>
 
-    // resize canvas
-    function fit() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    fit();
-    window.addEventListener('resize', fit);
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Identify and Prevent Phishing Attacks Before They Harm You – Udemy</li>
+      <li>Linux Fundamentals 100 – TCM Security</li>
+      <li>SOC Analyst Internship Certificate – Cyborts</li>
+      <li>Vulnerability Assessment and Penetration Testing (VAPT) – Udemy</li>
+      <li>ISCS Candidate Certificate</li>
+      <li>Data Analytics – UniAthena</li>
+      <li>Fundamentals of Dark Web – SOCRadar</li>
+      <li>Mastering Vulnerability Assessment – Tech Hierarchy</li>
+      <li>Cybersecurity Badge – Test.io</li>
+      <li>Basics of Python – UniAthena</li>
+      <li>Google Soft Skills Program – PAFLA</li>
+      <li>Master ChatGPT – UniAthena</li>
+      <li>Opswat Introduction to Critical Infrastructure Protection (ICIP) – Opswat</li>
+      <li>Complete Windows Password Cracking Course – Udemy</li>
+    </ul>
+  </section>
 
-    // nodes config
-    const NODE_COUNT = Math.max(20, Math.floor((canvas.width * canvas.height) / 80000)); // adaptive
-    const nodes = [];
-    const maxLinkDistance = 180; // pixels
-    const bgColor = 'rgba(6,10,15,0.95)';
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li>MITRE ATT&amp;CK</li>
+      <li>Web Application Vulnerability Assessment (bWAPP)</li>
+      <li>Web Application Vulnerability Assessment (DVWA)</li>
+      <li>Cryptography and Secret Retrieval – Docker Lab</li>
+      <li>Advanced Vulnerability Assessment (OWASP Juice Shop)</li>
+      <li>Network Vulnerability Assessment – Metasploitable with Nessus</li>
+    </ul>
+  </section>
 
-    function rand(min, max) { return Math.random() * (max - min) + min; }
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p class="contact-links">
+      📧 <a href="mailto:infosectalha@gmail.com">infosectalha@gmail.com</a><br/>
+      💼 <a href="https://www.linkedin.com/in/infosectalha" target="_blank">LinkedIn</a><br/>
+      💻 <a href="https://github.com/infosectalha" target="_blank">GitHub</a>
+    </p>
+  </section>
+</div>
 
-    // create nodes
-    for (let i = 0; i < NODE_COUNT; i++) {
-      nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: rand(-0.25, 0.25),
-        vy: rand(-0.25, 0.25),
-        r: rand(1.6, 3.2),
-        hue: 200 + Math.random() * 30 // bluish tones
-      });
-    }
-
-    // draw loop
-    function step() {
-      // subtle fade to create trails
-      ctx.fillStyle = bgColor;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // update nodes
-      for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        n.x += n.vx;
-        n.y += n.vy;
-
-        // bounce edges gently
-        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-      }
-
-      // draw links
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i];
-          const b = nodes[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < maxLinkDistance) {
-            const alpha = 0.12 * (1 - dist / maxLinkDistance);
-            ctx.strokeStyle = rgba(31,159,255,${alpha}); // blue link
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-            ctx.closePath();
-          }
-        }
-      }
-
-      // draw nodes (glowing)
-      for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, 20);
-        grad.addColorStop(0, rgba(31,159,255,0.95));
-        grad.addColorStop(0.33, rgba(31,159,255,0.28));
-        grad.addColorStop(1, rgba(31,159,255,0.02));
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // slight random motion / drift
-      for (let k = 0; k < nodes.length; k++) {
-        nodes[k].vx += rand(-0.015, 0.015);
-        nodes[k].vy += rand(-0.015, 0.015);
-        // clamp velocities
-        nodes[k].vx = Math.max(Math.min(nodes[k].vx, 0.6), -0.6);
-        nodes[k].vy = Math.max(Math.min(nodes[k].vy, 0.6), -0.6);
-      }
-
-      requestAnimationFrame(step);
-    }
-
-    // start
-    requestAnimationFrame(step);
-
-    // subtle pulse behind profile image (optional)
-    (function pulse() {
-      const el = document.querySelector('.profile-img');
-      if (!el) return;
-      let scale = 1;
-      let dir = 1;
-      setInterval(() => {
-        scale += dir * 0.004;
-        if (scale > 1.018) dir = -1;
-        if (scale < 0.998) dir = 1;
-        el.style.transform = translateY(-4px) scale(${scale});
-      }, 40);
-    })();
-  </script>
 </body>
 </html>
