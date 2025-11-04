@@ -1,70 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Muhammad Talha — Home</title>
-  <meta name="description" content="Muhammad Talha — SOC Analyst L1. Portfolio: penetration testing, vulnerability assessment, network scanning.">
-  <meta property="og:title" content="Muhammad Talha — SOC Analyst L1">
-  <meta property="og:description" content="SOC Analyst focused on penetration testing, VAPT, and SOC operations.">
-  <meta property="og:image" content="/profile.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:;">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Official portfolio of Muhammad Talha — Cybersecurity Enthusiast, Ethical Hacker, and IT Learner. Explore my certifications, projects, and professional resume." />
+  <meta name="keywords" content="Muhammad Talha, cybersecurity, ethical hacking, resume, portfolio, hacker vibes, IT professional" />
+  <meta name="author" content="Muhammad Talha" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <title>Muhammad Talha | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <canvas id="bgCanvas" style="position:fixed;inset:0;z-index:-2;"></canvas>
-
-  <!-- mobile sidebar -->
-  <aside id="mobileSidebar" class="mobile-sidebar" aria-hidden="true">
-    <button id="closeSidebarBtn" class="close-btn" aria-label="Close menu">✕</button>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/certifications/">Certifications</a>
-    <a href="/projects/">Projects</a>
-    <a href="/contact/">Contact</a>
-  </aside>
-
-  <!-- top nav -->
-  <nav class="site-nav" role="navigation" aria-label="Main navigation">
-    <button id="openSidebarBtn" class="hamburger" aria-label="Open menu">☰</button>
-    <ul>
-      <li><a href="/" class="active">Home</a></li>
-      <li><a href="/about/">About</a></li>
-      <li><a href="/certifications/">Certifications</a></li>
-      <li><a href="/projects/">Projects</a></li>
-      <li><a href="/contact/">Contact</a></li>
-    </ul>
-  </nav>
-
-  <main class="site" role="main">
-    <header class="hero" role="banner">
-      <span class="profile-img"><img src="/profile.jpg" alt="Muhammad Talha"></span>
-      <h1 class="title">Muhammad Talha</h1>
-      <h3 class="subtitle">SOC Analyst L1</h3>
-      <p class="mini" style="color:var(--muted);margin-top:8px">Cybersecurity Professional • Pen Tester • Vulnerability Researcher</p>
-    </header>
-
-    <section class="panel">
-      <h2>Professional Profile</h2>
-      <p class="mini">I identify and mitigate real-world vulnerabilities through penetration testing, vulnerability assessment, and network scanning. I have completed hands-on projects using DVWA, bWAPP, OWASP Juice Shop, WebGoat, and Metasploitable. I’m available for freelance or internship opportunities in offensive security and SOC analysis.</p>
-      <div style="margin-top:12px">
-        <a href="/Muhammad%20Talha%20Resume.pdf" download="Muhammad Talha Resume.pdf" style="display:inline-block;padding:10px 14px;border-radius:8px;background:var(--primary);color:#001;font-weight:700;text-decoration:none">Access Professional Resume</a>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>Experience (selected)</h2>
-      <ul>
-        <li><strong>SOC Analyst Internship</strong> — Cyborts (1 month)</li>
-        <li><strong>Associate Project Manager Intern</strong> — Excelerate (1 month)</li>
-        <li><strong>Receptionist Internship</strong> — American Lyceum School (1 month)</li>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Muhammad Talha</div>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-    </section>
+    </nav>
+  </header>
 
-    <footer>© 2025 Muhammad Talha — Securing the Digital Frontier.</footer>
-  </main>
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <img src="profile.jpg" alt="Muhammad Talha" class="profile-pic" />
+      <h2>Cybersecurity & Ethical Hacking Enthusiast</h2>
+      <a href="Muhammad Talha Resume.pdf" class="btn" download>Download Professional Resume</a>
+    </div>
+  </section>
 
-  <script src="/assets/main.js" defer></script>
+  <canvas id="matrixBackground"></canvas>
+
+  <footer>
+    <p>© 2025 Muhammad Talha — Securing the Digital Future.</p>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
