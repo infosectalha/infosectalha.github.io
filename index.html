@@ -1,146 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Muhammad Talha | SOC Analyst L1</title>
   <style>
-    /* ====== Base Styles ====== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    /* Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+    /* --- Base --- */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    html,body { height:100%; }
     body {
-      background-color: #0a0a0a;
-      color: #e0e0e0;
-      line-height: 1.6;
-      background-image: radial-gradient(rgba(0, 100, 255, 0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      background: #000; /* fallback */
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      position:relative;
     }
 
-    a {
-      color: #3399ff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    h1, h2 {
-      color: #3399ff;
-      text-shadow: 0 0 10px #005bff;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    /* --- Canvas background (full-screen) --- */
+    canvas#network-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display:block;
+      background: linear-gradient(180deg, #020203 0%, #050608 60%, #05060a 100%);
+      filter: contrast(1.05) saturate(1.05);
     }
 
-    h2 {
-      margin-top: 40px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 5px;
-      font-size: 1.8rem;
-    }
-
-    .container {
-      width: 90%;
+    /* --- Content container --- */
+    .wrap {
+      position: relative;
+      z-index: 2; /* above canvas */
       max-width: 1000px;
       margin: 40px auto;
-      background: rgba(20, 20, 20, 0.9);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0, 0, 255, 0.2);
+      padding: 28px;
+      background: rgba(10,10,12,0.6);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 60px rgba(0,85,170,0.06);
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
-    /* ====== Profile Section ====== */
-    .profile-section {
-      text-align: center;
-      margin-bottom: 30px;
+    /* --- Profile --- */
+    .profile {
+      text-align:center;
+      margin-bottom: 18px;
     }
 
     .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 3px solid #3399ff;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      overflow:hidden;
+      display:inline-block;
+      border: 3px solid #1f9fff;
+      box-shadow: 0 6px 30px rgba(31,159,255,0.12), 0 0 18px rgba(31,159,255,0.06);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .profile-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .profile-img:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 50px rgba(31,159,255,0.18), 0 0 30px rgba(31,159,255,0.12);
     }
 
-    .title {
-      color: #999;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-      margin-top: 8px;
+    h1 { margin-top:14px; font-size:2.3rem; color:#bfe9ff; letter-spacing:0.2px; }
+    .title { color:#a8b6c9; margin-top:6px; font-weight:500; }
+
+    /* --- Section style --- */
+    section.block {
+      margin-top:24px;
+      padding:18px 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      transition: transform .25s ease;
+    }
+    section.block:hover { transform: translateY(-4px); }
+
+    section.block h2 {
+      display:inline-block;
+      margin-bottom:10px;
+      color:#1f9fff; /* blue subheading */
+      font-size:1.15rem;
+      padding-bottom:6px;
+      border-bottom:2px solid rgba(31,159,255,0.12);
     }
 
-    /* ====== Sections ====== */
-    section {
-      margin-bottom: 30px;
-    }
+    p, li { color:#d9e6f4; font-size:0.98rem; line-height:1.55; }
 
-    ul {
-      list-style-type: none;
-      margin-top: 10px;
+    ul { margin-top:8px; list-style:none; padding-left:0; }
+    ul li {
+      padding:10px 8px;
+      border-bottom:1px solid rgba(255,255,255,0.02);
+      color: #d9e6f4;
     }
+    ul li:last-child { border-bottom:none; }
 
-    li {
-      padding: 8px 0;
-      border-bottom: 1px solid #222;
-    }
-
-    li:last-child {
-      border-bottom: none;
-    }
-
-    /* ====== Contact Section ====== */
+    /* --- Contact links --- */
     .contact a {
-      display: inline-block;
-      margin-right: 20px;
-      margin-top: 10px;
-      font-weight: 500;
-      transition: color 0.3s ease;
+      display:inline-block;
+      margin-right:14px;
+      color:#aee3ff;
+      text-decoration:none;
+      font-weight:600;
+    }
+    .contact a:hover { color:#ffffff; text-decoration:underline; }
+
+    /* --- Footer --- */
+    footer { text-align:center; color:#8da0b8; margin-top:18px; font-size:0.9rem; }
+
+    /* --- Responsive --- */
+    @media (max-width:720px) {
+      .wrap { margin:18px; padding:16px; }
+      h1 { font-size:1.8rem; }
+      .profile-img { width:120px; height:120px; }
     }
 
-    .contact a:hover {
-      color: #66b3ff;
-    }
-
-    /* ====== Glow Effect ====== */
-    .glow {
-      color: #3399ff;
-      text-shadow: 0 0 10px #3399ff;
-    }
-
-    /* ====== Responsive ====== */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-      .profile-img {
-        width: 120px;
-        height: 120px;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="profile-section">
-      <img src="profile.jpg" alt="Muhammad Talha" class="profile-img" />
+  <!-- animated network canvas -->
+  <canvas id="network-bg"></canvas>
+
+  <div class="wrap" role="main">
+    <div class="profile">
+      <span class="profile-img">
+        <img src="profile.jpg" alt="Muhammad Talha" />
+      </span>
       <h1>Muhammad Talha</h1>
-      <p class="title">SOC Analyst L1</p>
+      <div class="title">SOC Analyst L1</div>
     </div>
 
-    <section id="about">
+    <section id="about" class="block">
       <h2>About Me</h2>
       <p>
         I’m a cybersecurity analyst focused on identifying and mitigating real-world vulnerabilities.
@@ -150,7 +148,7 @@
       </p>
     </section>
 
-    <section id="certifications">
+    <section id="certifications" class="block">
       <h2>Certifications</h2>
       <ul>
         <li>Identify and Prevent Phishing Attacks Before They Harm You (Udemy)</li>
@@ -165,24 +163,24 @@
         <li>Basics of Python (UniAthena)</li>
         <li>Google Soft Skills Program (PAFLA)</li>
         <li>Master ChatGPT (UniAthena)</li>
-        <li>Opswat Introduction to Critical Infrastructure Protection (ICIP) (Opswat)</li>
+        <li>OPSWAT Introduction to Critical Infrastructure Protection (ICIP) (Opswat)</li>
         <li>Complete Windows Password Cracking Course | Practical Guide (Udemy)</li>
       </ul>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="block">
       <h2>Projects</h2>
       <ul>
-        <li>MITRE ATT&CK Framework</li>
+        <li>MITRE ATT&CK</li>
         <li>Web Application Vulnerability Assessment (bWAPP)</li>
         <li>Web Application Vulnerability Assessment (DVWA)</li>
-        <li>Cryptography and Secret Retrieval - Docker Lab</li>
+        <li>Cryptography and Secret Retrieval – Docker Lab</li>
         <li>Advanced Vulnerability Assessment (OWASP Juice Shop)</li>
-        <li>Network Vulnerability Assessment - Metasploitable with Nessus</li>
+        <li>Network Vulnerability Assessment – Metasploitable with Nessus</li>
       </ul>
     </section>
 
-    <section id="experience">
+    <section id="experience" class="block">
       <h2>Experience</h2>
       <ul>
         <li>SOC Analyst Intern – Cyborts (1 month)</li>
@@ -191,12 +189,130 @@
       </ul>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact" class="block contact">
       <h2>Contact Me</h2>
-      <a href="mailto:infosectalha@gmail.com">📧 infosectalha@gmail.com</a>
-      <a href="https://www.linkedin.com/in/infosectalha" target="_blank">💼 LinkedIn</a>
-      <a href="https://github.com/infosectalha" target="_blank">💻 GitHub</a>
+      <div style="margin-top:10px">
+        <a href="mailto:infosectalha@gmail.com">📧 infosectalha@gmail.com</a>
+        <a href="https://www.linkedin.com/in/infosectalha" target="_blank">💼 linkedin.com/in/infosectalha</a>
+        <a href="https://github.com/infosectalha" target="_blank">💻 github.com/infosectalha</a>
+      </div>
     </section>
+
+    <footer>© 2025 Muhammad Talha — Cybersecurity Portfolio</footer>
   </div>
+
+  <!-- ====== Network animation script ====== -->
+  <script>
+    const canvas = document.getElementById('network-bg');
+    const ctx = canvas.getContext('2d');
+
+    // resize canvas
+    function fit() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    fit();
+    window.addEventListener('resize', fit);
+
+    // nodes config
+    const NODE_COUNT = Math.max(20, Math.floor((canvas.width * canvas.height) / 80000)); // adaptive
+    const nodes = [];
+    const maxLinkDistance = 180; // pixels
+    const bgColor = 'rgba(6,10,15,0.95)';
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    // create nodes
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: rand(-0.25, 0.25),
+        vy: rand(-0.25, 0.25),
+        r: rand(1.6, 3.2),
+        hue: 200 + Math.random() * 30 // bluish tones
+      });
+    }
+
+    // draw loop
+    function step() {
+      // subtle fade to create trails
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // update nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        n.x += n.vx;
+        n.y += n.vy;
+
+        // bounce edges gently
+        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+      }
+
+      // draw links
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxLinkDistance) {
+            const alpha = 0.12 * (1 - dist / maxLinkDistance);
+            ctx.strokeStyle = rgba(31,159,255,${alpha}); // blue link
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+            ctx.closePath();
+          }
+        }
+      }
+
+      // draw nodes (glowing)
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, 20);
+        grad.addColorStop(0, rgba(31,159,255,0.95));
+        grad.addColorStop(0.33, rgba(31,159,255,0.28));
+        grad.addColorStop(1, rgba(31,159,255,0.02));
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // slight random motion / drift
+      for (let k = 0; k < nodes.length; k++) {
+        nodes[k].vx += rand(-0.015, 0.015);
+        nodes[k].vy += rand(-0.015, 0.015);
+        // clamp velocities
+        nodes[k].vx = Math.max(Math.min(nodes[k].vx, 0.6), -0.6);
+        nodes[k].vy = Math.max(Math.min(nodes[k].vy, 0.6), -0.6);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    // start
+    requestAnimationFrame(step);
+
+    // subtle pulse behind profile image (optional)
+    (function pulse() {
+      const el = document.querySelector('.profile-img');
+      if (!el) return;
+      let scale = 1;
+      let dir = 1;
+      setInterval(() => {
+        scale += dir * 0.004;
+        if (scale > 1.018) dir = -1;
+        if (scale < 0.998) dir = 1;
+        el.style.transform = translateY(-4px) scale(${scale});
+      }, 40);
+    })();
+  </script>
 </body>
 </html>
