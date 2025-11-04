@@ -1,24 +1,13 @@
-// ==========================
-// Mobile Sidebar Toggle
-// ==========================
-const openSidebarBtn = document.getElementById('openSidebarBtn');
-const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-const mobileSidebar = document.getElementById('mobileSidebar');
+// Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
 
-openSidebarBtn?.addEventListener('click', () => {
-  mobileSidebar.setAttribute('aria-hidden', 'false');
-  mobileSidebar.classList.add('active');
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
 });
 
-closeSidebarBtn?.addEventListener('click', () => {
-  mobileSidebar.setAttribute('aria-hidden', 'true');
-  mobileSidebar.classList.remove('active');
-});
-
-// ==========================
-// Matrix-like Background Animation
-// ==========================
-const canvas = document.getElementById('bgCanvas');
+// Matrix effect
+const canvas = document.getElementById('matrixBackground');
 const ctx = canvas.getContext('2d');
 
 function resizeCanvas() {
@@ -26,38 +15,29 @@ function resizeCanvas() {
   canvas.height = window.innerHeight;
 }
 resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-const binary = "010101110010101001001010101010101001010100101010";
+const binary = '0101010110010101101010010101010110101010010101010101';
 const fontSize = 14;
 let columns = Math.floor(canvas.width / fontSize);
 let drops = Array(columns).fill(1);
 
 function drawMatrix() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'rgba(13,17,23,0.05)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  ctx.fillStyle = "#0078ff";
-  ctx.font = `${fontSize}px monospace`;
+  ctx.fillStyle = '#00ff99';
+  ctx.font = fontSize + 'px monospace';
 
-  for (let i = 0; i < drops.length; i++) {
-    const text = binary.charAt(Math.floor(Math.random() * binary.length));
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+  for(let i=0; i<drops.length; i++) {
+    const text = binary.charAt(Math.floor(Math.random()*binary.length));
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
 
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+    if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) {
       drops[i] = 0;
     }
     drops[i]++;
   }
 }
 
-function animate() {
-  drawMatrix();
-  requestAnimationFrame(animate);
-}
-animate();
-
-window.addEventListener('resize', () => {
-  resizeCanvas();
-  columns = Math.floor(canvas.width / fontSize);
-  drops = Array(columns).fill(1);
-});
+setInterval(drawMatrix, 50);
