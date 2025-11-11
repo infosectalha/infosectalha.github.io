@@ -1,1 +1,354 @@
+/* ---
+   SECURE PORTFOLIO - HACKER THEME
+   Created by Gemini for Muhammad Talha
+   --- */
 
+/* --- 0. Global Reset & Root Variables --- */
+:root {
+    --bg-color: #0d0d0d; /* Near black */
+    --text-color: #e0e0e0; /* Light gray */
+    --header-color: #ffffff; /* Pure white for headers */
+    --accent-color: #00ff41; /* Bright "hacker" green */
+    --accent-color-hover: #ffffff;
+    --border-color: rgba(0, 255, 65, 0.2); /* Faint green border */
+    --card-bg: #1a1a1a; /* Dark gray card */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- 1. Base Body & Typography --- */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--header-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; color: var(--accent-color); margin-top: 2rem; }
+h3 { font-size: 1.5rem; color: var(--accent-color); }
+h4 { font-size: 1.2rem; color: var(--header-color); }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color-hover);
+}
+
+ul {
+    list-style: none;
+    margin-left: 1rem;
+}
+
+/* --- 2. Header & Navigation --- */
+.header {
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    width: 90%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--header-color);
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* --- 3. Hero (About Me) Section --- */
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-text {
+    flex: 2;
+    padding-right: 2rem;
+}
+
+.hero-text .subtitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.hero-text h1 {
+    color: var(--header-color);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+/* --- 4. Call-to-Action Buttons --- */
+.cta-buttons {
+    margin-top: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0.5rem;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--accent-color);
+}
+
+/* --- 5. Content Sections (Skills, Experience, etc.) --- */
+.section {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-category {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    transform: translateY(-5px);
+}
+
+.skill-category h3 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.skill-category li {
+    padding: 0.25rem 0;
+}
+
+/* Experience & Education Section */
+.timeline {
+    position: relative;
+    max-width: 900px;
+}
+
+.timeline-item {
+    padding: 1rem 2rem;
+    padding-left: 3rem;
+    position: relative;
+    border-left: 2px solid var(--border-color);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -11px;
+    top: 1.5rem;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border: 3px solid var(--bg-color);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item h4 {
+    margin-bottom: 0.25rem;
+}
+
+.timeline-item .date {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item p, .timeline-item ul {
+    margin-top: 0.5rem;
+}
+
+/* --- 6. Footer & Contact --- */
+.footer {
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-links .btn {
+    margin: 0;
+}
+
+/* --- 7. Project & Certificate Pages --- */
+.page-header {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    margin-top: 0;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+}
+
+.card-footer {
+    padding: 0 1.5rem 1.5rem;
+}
+
+/* --- 8. Responsive Design --- */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-links li {
+        margin-left: 1rem;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-text {
+        padding-right: 0;
+    }
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 2rem;
+    }
+}
