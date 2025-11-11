@@ -93,7 +93,7 @@ ul {
 }
 
 .nav-links {
-    display: flex;
+    display: flex; /* This is for DESKTOP */
 }
 
 .nav-links li {
@@ -159,7 +159,7 @@ ul {
 .mobile-menu ul {
     list-style: none;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* This is for MOBILE sidebar */
 }
 .mobile-menu li {
     margin-bottom: 1.5rem;
@@ -176,7 +176,7 @@ ul {
     align-items: center;
     padding: 4rem 0;
     gap: 2rem;
-    flex-direction: row-reverse; /* <<< THIS IS THE FIX. Puts 2nd item (text) first */
+    flex-direction: row; /* <<< FIXED: Text left, Pic right */
 }
 
 .hero-text {
@@ -279,7 +279,17 @@ ul {
     border-radius: 20px;
     font-size: 0.9rem;
     border: 1px solid var(--border-color);
+    transition: all 0.3s ease; /* <<< NEW: Added transition */
 }
+
+/* <<< NEW: Skill Hover Effect >>> */
+.skill-category li:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    cursor: default;
+}
+
 
 /* Experience & Education Section */
 .timeline {
@@ -474,25 +484,25 @@ ul {
     }
 
     .hero {
-        flex-direction: column; /* <<< THIS IS THE FIX. Image (first in HTML) goes on top */
-        align-items: center; /* Center everything */
-        text-align: center; /* Center the text */
+        flex-direction: column; /* <<< THIS IS THE FIX. Text (first in HTML) goes on top */
+        align-items: flex-start; /* Left-align everything */
+        text-align: left; /* Left-align the text */
         padding-top: 2rem;
     }
 
     .hero-image {
         /* No 'order' needed anymore */
-        margin-bottom: 2rem;
-        justify-content: center;
+        margin-top: 2rem; /* Move pic below text */
+        justify-content: flex-start; /* Align pic left */
     }
 
     .profile-pic {
-        width: 180px;
+        width: 180px; /* Bigger pic */
         height: 180px;
     }
 
     .cta-buttons {
-        justify-content: center; /* Center the buttons */
+        justify-content: flex-start; /* Left-align buttons */
     }
 
     .footer-container {
