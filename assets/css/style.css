@@ -176,7 +176,7 @@ ul {
     align-items: center;
     padding: 4rem 0;
     gap: 2rem;
-    flex-direction: row; /* <<< FIXED: Text left, Pic right */
+    flex-direction: row; /* DESKTOP: Text left, Pic right */
 }
 
 .hero-text {
@@ -279,10 +279,10 @@ ul {
     border-radius: 20px;
     font-size: 0.9rem;
     border: 1px solid var(--border-color);
-    transition: all 0.3s ease; /* <<< NEW: Added transition */
+    transition: all 0.3s ease; /* Transition for the hover */
 }
 
-/* <<< NEW: Skill Hover Effect >>> */
+/* Skill Hover Effect (Laptops only) */
 .skill-category li:hover {
     background-color: var(--primary-color);
     color: #ffffff;
@@ -484,25 +484,29 @@ ul {
     }
 
     .hero {
-        flex-direction: column; /* <<< THIS IS THE FIX. Text (first in HTML) goes on top */
-        align-items: flex-start; /* Left-align everything */
-        text-align: left; /* Left-align the text */
+        flex-direction: column; /* Text on top, Pic on bottom */
+        align-items: flex-start; /* <<< THE FINAL FIX: Align all items to the left */
+        text-align: left; /* Align text to the left */
         padding-top: 2rem;
     }
 
     .hero-image {
-        /* No 'order' needed anymore */
-        margin-top: 2rem; /* Move pic below text */
-        justify-content: flex-start; /* Align pic left */
+        order: 2; /* Move image to the bottom */
+        margin-top: 2rem; 
+        justify-content: flex-start; /* Align image to the left */
+    }
+
+    .hero-text {
+        order: 1; /* Move text to the top */
     }
 
     .profile-pic {
-        width: 180px; /* Bigger pic */
+        width: 180px; 
         height: 180px;
     }
 
     .cta-buttons {
-        justify-content: flex-start; /* Left-align buttons */
+        justify-content: flex-start; /* Align buttons to the left */
     }
 
     .footer-container {
