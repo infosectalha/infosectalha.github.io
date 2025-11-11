@@ -70,7 +70,7 @@ ul {
 
 /* --- 2. Header & Navigation --- */
 .header {
-    background: #ffffff; /* Solid white for a clean header */
+    background: #ffffff;
     border-bottom: 1px solid var(--border-color);
     padding: 1.5rem 0;
     position: sticky;
@@ -112,9 +112,9 @@ ul {
     text-decoration: none;
 }
 
-/* NEW: Mobile Menu Button (Hamburger) */
+/* Mobile Menu Button (Hamburger) */
 .mobile-menu-button {
-    display: none; /* Hidden on desktop */
+    display: none;
     width: 30px;
     height: 25px;
     flex-direction: column;
@@ -128,8 +128,6 @@ ul {
     border-radius: 2px;
     transition: all 0.3s ease;
 }
-
-/* NEW: Hamburger "X" animation */
 .mobile-menu-button.open .bar:nth-child(1) {
     transform: translateY(11px) rotate(45deg);
 }
@@ -140,12 +138,12 @@ ul {
     transform: translateY(-11px) rotate(-45deg);
 }
 
-/* NEW: Mobile Sidebar Menu */
+/* Mobile Sidebar Menu */
 .mobile-menu {
     display: none;
     position: fixed;
-    top: 91px; /* Height of the header */
-    left: -100%; /* Start off-screen */
+    top: 91px;
+    left: -100%;
     width: 70%;
     max-width: 300px;
     height: calc(100vh - 91px);
@@ -156,7 +154,7 @@ ul {
     transition: left 0.3s ease;
 }
 .mobile-menu.open {
-    left: 0; /* Slide in */
+    left: 0;
 }
 .mobile-menu ul {
     list-style: none;
@@ -178,6 +176,7 @@ ul {
     align-items: center;
     padding: 4rem 0;
     gap: 2rem;
+    flex-direction: row-reverse; /* <<< THIS IS THE FIX. Puts 2nd item (text) first */
 }
 
 .hero-text {
@@ -259,7 +258,7 @@ ul {
 }
 
 .skill-category {
-    background: #ffffff; /* Brighter card */
+    background: #ffffff;
     border: 1px solid var(--border-color);
     padding: 1.5rem;
     border-radius: 8px;
@@ -289,7 +288,7 @@ ul {
 
 .timeline-item {
     padding: 1.5rem;
-    background: #ffffff; /* Brighter card */
+    background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -321,11 +320,10 @@ ul {
 /* --- 6. Footer & Contact --- */
 .footer {
     padding: 3rem 0;
-    background-color: #ffffff; /* Brighter footer */
+    background-color: #ffffff;
     border-top: 1px solid var(--border-color);
 }
 
-/* NEW: Footer Layout Fix */
 .footer-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -358,13 +356,12 @@ ul {
     color: #777;
 }
 
-/* NEW: Contact Form Styles */
+/* Contact Form Styles */
 .contact-form {
     max-width: 700px;
-    animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* NEW: Animation keyframe */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -420,7 +417,7 @@ ul {
 }
 
 .card {
-    background: #ffffff; /* Brighter card */
+    background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
@@ -473,35 +470,36 @@ ul {
         display: flex;
     }
     .mobile-menu {
-        display: block; /* Make it visible for animation */
+        display: block;
     }
 
     .hero {
-        flex-direction: column; /* Stack vertically */
-        align-items: flex-start; /* Align text to left */
+        flex-direction: column; /* <<< THIS IS THE FIX. Image (first in HTML) goes on top */
+        align-items: center; /* Center everything */
+        text-align: center; /* Center the text */
         padding-top: 2rem;
     }
 
     .hero-image {
-        order: -1; /* <<< THIS IS THE FIX. Moves image to the top */
+        /* No 'order' needed anymore */
         margin-bottom: 2rem;
+        justify-content: center;
     }
 
     .profile-pic {
-        width: 150px; /* Smaller, more professional */
-        height: 150px;
+        width: 180px;
+        height: 180px;
     }
 
     .cta-buttons {
-        justify-content: flex-start;
+        justify-content: center; /* Center the buttons */
     }
 
-    /* NEW: Mobile Footer Layout */
     .footer-container {
-        grid-template-columns: 1fr; /* Stack form and links */
+        grid-template-columns: 1fr;
         gap: 2rem;
     }
     .footer-links {
-        order: 1; /* Put links after form */
+        order: 1;
     }
 }
