@@ -5,13 +5,13 @@
 
 /* --- 0. Global Reset & Root Variables --- */
 :root {
-    --bg-color: #f9f9f9;         /* VERY light gray background */
-    --text-color: #333333;       /* Dark, readable text */
-    --primary-color: #007bff;    /* Professional blue */
-    --border-color: #eeeeee;      /* Light gray border */
-    --card-bg: #f9f9f9;         /* Very light gray for cards */
-    --header-color: #111111;     /* Dark black for headers */
-    --shadow: 0 4px 12px rgba(0,0,0,0.05); /* Subtle shadow */
+    --bg-color: #f9f9f9;
+    --text-color: #333333;
+    --primary-color: #007bff;
+    --border-color: #eeeeee;
+    --card-bg: #f9f9f9;
+    --header-color: #111111;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 * {
@@ -23,7 +23,6 @@
 /* --- 1. Base Body & Typography --- */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    /* This adds a very soft top-to-bottom white-to-gray gradient */
     background-image: linear-gradient(to bottom, #ffffff, #f9f9f9);
     color: var(--text-color);
     line-height: 1.6;
@@ -71,7 +70,7 @@ ul {
 
 /* --- 2. Header & Navigation --- */
 .header {
-    background: var(--bg-color);
+    background: #ffffff; /* Solid white for a clean header */
     border-bottom: 1px solid var(--border-color);
     padding: 1.5rem 0;
     position: sticky;
@@ -111,6 +110,66 @@ ul {
 .nav-links a:hover {
     color: var(--primary-color);
     text-decoration: none;
+}
+
+/* NEW: Mobile Menu Button (Hamburger) */
+.mobile-menu-button {
+    display: none; /* Hidden on desktop */
+    width: 30px;
+    height: 25px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.mobile-menu-button .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--header-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* NEW: Hamburger "X" animation */
+.mobile-menu-button.open .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.mobile-menu-button.open .bar:nth-child(2) {
+    opacity: 0;
+}
+.mobile-menu-button.open .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* NEW: Mobile Sidebar Menu */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 91px; /* Height of the header */
+    left: -100%; /* Start off-screen */
+    width: 70%;
+    max-width: 300px;
+    height: calc(100vh - 91px);
+    background-color: #ffffff;
+    box-shadow: 4px 0px 15px rgba(0,0,0,0.1);
+    z-index: 99;
+    padding: 2rem;
+    transition: left 0.3s ease;
+}
+.mobile-menu.open {
+    left: 0; /* Slide in */
+}
+.mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.mobile-menu li {
+    margin-bottom: 1.5rem;
+}
+.mobile-menu a {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--header-color);
 }
 
 /* --- 3. Hero (About Me) Section --- */
@@ -166,7 +225,7 @@ ul {
     text-align: center;
     border-radius: 5px;
     transition: all 0.3s ease;
-    cursor: pointer; /* Added for forms */
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -200,7 +259,7 @@ ul {
 }
 
 .skill-category {
-    background: var(--bg-color);
+    background: #ffffff; /* Brighter card */
     border: 1px solid var(--border-color);
     padding: 1.5rem;
     border-radius: 8px;
@@ -230,6 +289,7 @@ ul {
 
 .timeline-item {
     padding: 1.5rem;
+    background: #ffffff; /* Brighter card */
     border: 1px solid var(--border-color);
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -260,10 +320,24 @@ ul {
 
 /* --- 6. Footer & Contact --- */
 .footer {
-    text-align: center;
     padding: 3rem 0;
-    background-color: var(--card-bg);
+    background-color: #ffffff; /* Brighter footer */
     border-top: 1px solid var(--border-color);
+}
+
+/* NEW: Footer Layout Fix */
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.footer-links {
+    text-align: center;
 }
 
 .contact-links {
@@ -277,12 +351,31 @@ ul {
     margin: 0;
 }
 
+.copyright {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
 /* NEW: Contact Form Styles */
 .contact-form {
     max-width: 700px;
-    margin: 2rem auto;
-    text-align: left;
+    animation: fadeIn 1s ease-in-out; /* Fade-in animation */
 }
+
+/* NEW: Animation keyframe */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -301,7 +394,7 @@ ul {
     font-family: inherit;
     font-size: 1rem;
     background: #ffffff;
-    box-shadow: var(--shadow);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 }
 .form-group textarea {
     min-height: 150px;
@@ -327,7 +420,7 @@ ul {
 }
 
 .card {
-    background: var(--bg-color);
+    background: #ffffff; /* Brighter card */
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
@@ -372,31 +465,43 @@ ul {
 @media (max-width: 768px) {
     h1 { font-size: 2.2rem; }
 
-    .header .container {
-        flex-direction: column;
-        gap: 1rem;
+    /* Hide desktop nav, show mobile button */
+    .nav-links {
+        display: none;
     }
-
-    .nav-links li {
-        margin: 0 0.5rem;
+    .mobile-menu-button {
+        display: flex;
+    }
+    .mobile-menu {
+        display: block; /* Make it visible for animation */
     }
 
     .hero {
-        flex-direction: column-reverse;
+        flex-direction: column; /* Stack vertically */
+        align-items: flex-start; /* Align text to left */
         padding-top: 2rem;
-        align-items: flex-start; /* <<< THIS IS THE FIX. Aligns all items left. */
     }
-    
-    /* This rule is no longer needed */
-    /* .hero-image { } */
 
-    .profile-pic {
-        width: 180px;
-        height: 180px;
+    .hero-image {
+        order: -1; /* <<< THIS IS THE FIX. Moves image to the top */
         margin-bottom: 2rem;
     }
 
+    .profile-pic {
+        width: 150px; /* Smaller, more professional */
+        height: 150px;
+    }
+
     .cta-buttons {
-        justify-content: flex-start; /* Aligns buttons to the left */
+        justify-content: flex-start;
+    }
+
+    /* NEW: Mobile Footer Layout */
+    .footer-container {
+        grid-template-columns: 1fr; /* Stack form and links */
+        gap: 2rem;
+    }
+    .footer-links {
+        order: 1; /* Put links after form */
     }
 }
