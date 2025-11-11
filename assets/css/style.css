@@ -336,7 +336,7 @@ ul {
     padding: 0 1.5rem 1.5rem;
 }
 
-/* --- 8. Responsive Design --- */
+/* --- 8. Responsive Design (MOBILE) --- */
 @media (max-width: 768px) {
     h1 { font-size: 2.2rem; }
 
@@ -351,8 +351,12 @@ ul {
 
     .hero {
         flex-direction: column-reverse;
-        text-align: center;
+        /* REMOVED text-align: center; */
         padding-top: 2rem;
+    }
+
+    .hero-image {
+        justify-content: flex-start; /* ADDED: Aligns image to the left */
     }
 
     .profile-pic {
@@ -362,6 +366,6 @@ ul {
     }
 
     .cta-buttons {
-        justify-content: center;
+        justify-content: flex-start; /* CHANGED: Aligns buttons to the left */
     }
 }
