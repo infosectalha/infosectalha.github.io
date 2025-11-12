@@ -371,8 +371,6 @@ ul {
     max-width: 700px;
 }
 
-/* NO animation on the form, it's inside a fade-in section */
-
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -474,7 +472,7 @@ ul {
     }
 
     .hero {
-        flex-direction: column-reverse; /* <<< THE FINAL FIX: Pic on top, Text on bottom */
+        flex-direction: column-reverse; /* Pic on top, Text on bottom */
         align-items: flex-start; /* Align all items to the left */
         text-align: left; /* Align text to the left */
         padding-top: 2rem;
@@ -484,11 +482,7 @@ ul {
         margin-bottom: 2rem; 
         justify-content: flex-start; /* Align image to the left */
     }
-
-    .hero-text {
-       /* no changes needed */
-    }
-
+    
     .profile-pic {
         width: 180px; 
         height: 180px;
@@ -507,7 +501,7 @@ ul {
     }
 }
 
-/* --- 9. NEW: Animation Styles --- */
+/* --- 9. Animation Styles --- */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -537,4 +531,68 @@ ul {
 }
 .grid-layout.fade-in.animate .card:nth-child(6) {
     transition-delay: 500ms;
+}
+
+
+/* --- 10. NEW: Radar Widget --- */
+.radar-widget {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 123, 255, 0.05); /* Faint blue bg */
+    border-radius: 50%;
+    border: 2px solid rgba(0, 123, 255, 0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+/* Concentric circles */
+.radar-widget::before,
+.radar-widget::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(0, 123, 255, 0.2);
+    width: 66%;
+    height: 66%;
+    border-radius: 50%;
+}
+
+.radar-widget::after {
+    width: 33%;
+    height: 33%;
+}
+
+/* The sweep animation */
+.radar-sweep {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, rgba(0, 123, 255, 0.4) 0%, transparent 50%);
+    transform-origin: bottom right;
+    animation: radar-sweep 2.5s linear infinite;
+    overflow: hidden; /* Fixes small bleed-over */
+}
+
+@keyframes radar-sweep {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hide radar on small screens where it's too intrusive */
+@media (max-width: 768px) {
+    .radar-widget {
+        display: none;
+    }
 }
