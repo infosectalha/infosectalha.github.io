@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    // --- NEW: Scroll Animation Code ---
+    // --- NEW: Scroll Animation Code (Triggers Every Time) ---
     const observerOptions = {
         threshold: 0.1, // Trigger when 10% of the element is visible
         rootMargin: '0px 0px -50px 0px'
@@ -25,8 +25,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // When it scrolls INTO view, add the animate class
                 entry.target.classList.add('animate');
-                observer.unobserve(entry.target); // Stop observing once animated
+            } else {
+                // When it scrolls OUT of view, remove the class to reset it
+                entry.target.classList.remove('animate');
             }
         });
     }, observerOptions);
